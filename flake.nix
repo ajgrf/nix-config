@@ -24,5 +24,14 @@
             flakeSupport
           ];
         };
+
+        nixosConfigurations.tenzin = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/tenzin.nix
+            ./roles/desktop.nix
+            flakeSupport
+          ];
+        };
       };
 }
