@@ -33,5 +33,14 @@
             flakeSupport
           ];
         };
+
+        nixosConfigurations.petrus = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            ./hosts/petrus.nix
+            ./roles/nas.nix
+            flakeSupport
+          ];
+        };
       };
 }
