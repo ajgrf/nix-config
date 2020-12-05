@@ -5,21 +5,12 @@
   # Set your time zone.
   time.timeZone = "US/Central";
 
-  networking = {
-    networkmanager.enable = true;
-
-    # Open ports in the firewall.
-    firewall = {
-      # GSConnect
-      allowedTCPPortRanges = [ { from = 1716; to = 1764; } ];
-      allowedUDPPortRanges = [ { from = 1716; to = 1764; } ];
-    };
-  };
+  # Use NetworkManager to configure network interfaces.
+  networking.networkmanager.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    gnomeExtensions.gsconnect
     vim
   ];
 
