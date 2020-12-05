@@ -28,6 +28,9 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Magic VPN service. Authenticate with `sudo tailscale up`.
+  services.tailscale.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

@@ -28,6 +28,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # Magic VPN service. Authenticate with `sudo tailscale up`.
+  services.tailscale.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ajgrf = {
     description = "Alex Griffin";
