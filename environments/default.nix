@@ -28,6 +28,7 @@ with stable.pkgs; rec {
       anki
       bitwarden
       ungoogled-chromium
+      feh
       firefox
       gnome3.gnome-boxes
       gnome3.gnome-tweaks
@@ -35,7 +36,7 @@ with stable.pkgs; rec {
       keybase-gui
       libreoffice
       lollypop
-      unstable.protonmail-bridge
+      pinentry-gtk2
       # quodlibet
       unstable.pkgs.signal-desktop
       spotify
@@ -44,6 +45,9 @@ with stable.pkgs; rec {
       transmission-gtk
       virt-manager
       vlc
+      xclip
+      xdotool
+      xorg.xrdb
       xterm
     ];
   };
@@ -95,7 +99,6 @@ with stable.pkgs; rec {
       bitwarden-cli
       brightnessctl
       direnv
-      feh
       ffmpeg
       file
       git
@@ -107,23 +110,16 @@ with stable.pkgs; rec {
       ledger
       libnotify
       moreutils
-      mr
       pass
-      pinentry-gtk2
-      poppler_utils
-      unstable.pkgs.rbw
+      unstable.protonmail-bridge
       rclone
       reptyr
       rsync
       shellcheck
       shfmt
       stow
-      syncthing
       tmux
       trash-cli
-      xclip
-      xdotool
-      xorg.xrdb
       youtube-dl
     ];
   };
