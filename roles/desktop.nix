@@ -65,10 +65,6 @@
     pinentryFlavor = "gtk2";
   };
 
-  # Enable the Keybase user service and Keybase filesystem.
-  services.keybase.enable = true;
-  services.kbfs.enable = true;
-
   # Enable libvirt daemon.
   virtualisation.libvirtd.enable = true;
 

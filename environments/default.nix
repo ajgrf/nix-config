@@ -32,8 +32,6 @@ with stable.pkgs; rec {
       firefox
       gnome3.gnome-boxes
       gnome3.gnome-tweaks
-      keybase
-      keybase-gui
       libreoffice
       lollypop
       pinentry-gtk2
