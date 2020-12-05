@@ -5,17 +5,8 @@
   # Set your time zone.
   time.timeZone = "US/Central";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.eth0.useDHCP = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Use NetworkManager to configure network interfaces.
+  networking.networkmanager.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
