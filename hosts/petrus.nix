@@ -30,9 +30,10 @@
       fsType = "ext4";
     };
 
-  fileSystems."/mnt/rockpile" =
-    { device = "/dev/md/rockpile";
-      fsType = "ext4";
+  fileSystems."/depot" =
+    { device = "/dev/sda1";
+      fsType = "btrfs";
+      options = [ "subvol=depot" ];
     };
 
   swapDevices = [ ];
