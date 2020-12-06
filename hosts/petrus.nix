@@ -57,8 +57,8 @@
     description = "hard disk idle spindown";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      Type = "forking";
-      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a sda -i 600 -a sdb -i 600";
+      Type = "simple";
+      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -d -i 0 -a sda -i 600 -a sdb -i 600";
     };
   };
 
