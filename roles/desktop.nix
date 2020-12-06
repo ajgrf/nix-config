@@ -14,6 +14,13 @@
     vim
   ];
 
+  # Fonts to make available system-wide.
+  fonts.fonts = with pkgs; [
+    source-han-mono
+    source-han-sans
+    source-han-serif
+  ];
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
