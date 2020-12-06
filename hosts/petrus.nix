@@ -52,13 +52,13 @@
     MINSTOP=/sys/devices/platform/pwm-fan/hwmon/[[:print:]]*/pwm1=50
   '';
 
-  # Spin down hard disks after 3 minutes of idle time.
+  # Spin down hard disks after 10 minutes of idle time.
   systemd.services.hd-idle = {
     description = "hard disk idle spindown";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "forking";
-      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a sda -i 180 -a sdb -i 180";
+      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a sda -i 600 -a sdb -i 600";
     };
   };
 
