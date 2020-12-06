@@ -16,13 +16,23 @@ nix.extraOptions = ''
 Then add a symlink to =flake.nix= at =/etc/nixos/flake.nix= to manage NixOS
 installs with this repository.
 
+* User Profiles
+
 Run ~nix profile install .~ to install the default user environment, or
 ~nix profile install .#minimal-env~ for a non-graphical one. To upgrade the
 profile run ~nix profile upgrade defaultPackage.x86_64-linux~, or
 ~nix profile upgrade packages.aarch64-linux.minimal-env~.
+
+* Nix REPL with Flakes
+
+#+BEGIN_SRC bash
+$ echo "(builtins.getFlake (toString ./.)).nixosConfigurations.petrus" >./nixos-config.nix
+$ nix repl ./nixos-config.nix
+#+END_SRC
 
 * References
 
 - [[https://gist.github.com/suhr/4bb1f8434d0622588b23f9fe13e79973][How to Use Nix Flakes System-Wide]]
 - [[https://github.com/nrdxp/nixflk][nrdxp/nixflk]]
 - [[https://github.com/Mic92/nixos-aarch64-images][Mic92/nixos-aarch64-images]] for bootstrapping NixOS on my RockPro64.
+- [[https://github.com/NixOS/nix/issues/3803#issuecomment-657195849][Using Nix REPL with Flakes]]
