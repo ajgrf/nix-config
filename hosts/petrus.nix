@@ -36,6 +36,12 @@
       options = [ "subvol=depot" ];
     };
 
+  fileSystems."/var/lib/nextcloud" =
+    { device = "/dev/sda1";
+      fsType = "btrfs";
+      options = [ "subvol=nextcloud" ];
+    };
+
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
