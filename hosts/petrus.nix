@@ -62,7 +62,8 @@
   # Spin down hard disks after 10 minutes of idle time.
   systemd.services.hd-idle = {
     description = "hard disk idle spindown";
-    wantedBy = [ "multi-user.target" ];
+    # disabled
+    # wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.hd-idle}/bin/hd-idle -d -i 0 -a sda -i 600 -a sdb -i 600";
