@@ -54,8 +54,7 @@ with stable.pkgs; rec {
     name = "emacs-env";
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
-      aspell
-      aspellDicts.en
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       ((emacsPackagesGen emacs).emacsWithPackages (epkgs: [
         epkgs.vterm
         epkgs.pdf-tools
