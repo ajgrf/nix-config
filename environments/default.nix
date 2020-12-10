@@ -34,6 +34,7 @@ with stable.pkgs; rec {
       gnome3.gnome-tweaks
       libreoffice
       lollypop
+      nextcloud-client
       pinentry-gtk2
       # quodlibet
       unstable.pkgs.signal-desktop
