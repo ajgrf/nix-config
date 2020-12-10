@@ -35,7 +35,6 @@ with stable.pkgs; rec {
       libreoffice
       lollypop
       nextcloud-client
-      pinentry-gtk2
       # quodlibet
       unstable.pkgs.signal-desktop
       spotify
@@ -108,7 +107,6 @@ with stable.pkgs; rec {
       ledger
       libnotify
       moreutils
-      pass
       unstable.protonmail-bridge
       rclone
       reptyr

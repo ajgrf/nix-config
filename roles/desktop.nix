@@ -62,14 +62,11 @@
     };
   };
 
-  # Disable GNOME Keyring.
-  services.gnome3.gnome-keyring.enable = pkgs.lib.mkForce false;
-
   # Enable GnuPG agent with socket-activation for every user session.
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "gnome3";
   };
 
   # Enable libvirt daemon.
