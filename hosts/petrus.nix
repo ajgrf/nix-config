@@ -30,6 +30,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home" =
+    { device = "/dev/sda1";
+      fsType = "btrfs";
+      options = [ "subvol=@home" ];
+    };
+
   fileSystems."/depot" =
     { device = "/dev/sda1";
       fsType = "btrfs";
