@@ -40,4 +40,10 @@
     requires = [ "postgresql.service" ];
     after = [ "postgresql.service" ];
   };
+
+  # back up nightly database dumps
+  services.postgresqlBackup = {
+    enable = true;
+    location = "/depot/backup/postgresql";
+  };
 }
