@@ -33,13 +33,13 @@
   fileSystems."/depot" =
     { device = "/dev/sda1";
       fsType = "btrfs";
-      options = [ "subvol=depot" ];
+      options = [ "subvol=@depot" ];
     };
 
   fileSystems."/var/lib/nextcloud" =
     { device = "/dev/sda1";
       fsType = "btrfs";
-      options = [ "subvol=nextcloud" ];
+      options = [ "subvol=@nextcloud" ];
     };
 
   swapDevices = [ ];
