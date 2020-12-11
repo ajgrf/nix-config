@@ -35,13 +35,13 @@
     ];
   };
 
-  # ensure that postgres is running *before* running the setup
+  # Ensure that postgres is running *before* running the setup.
   systemd.services."nextcloud-setup" = {
     requires = [ "postgresql.service" ];
     after = [ "postgresql.service" ];
   };
 
-  # back up nightly database dumps
+  # Back up nightly database dumps.
   services.postgresqlBackup = {
     enable = true;
     location = "/depot/backup/postgresql";
