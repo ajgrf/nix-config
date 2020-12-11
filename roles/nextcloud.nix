@@ -45,5 +45,18 @@
   services.postgresqlBackup = {
     enable = true;
     location = "/depot/backup/postgresql";
+    startAt = "*-*-* 00:00:00";
+  };
+
+  # Back up Nextcloud data.
+  services.restic.backups."nextcloud" = {
+    passwordFile = "/etc/nixos/restic-password";
+    paths = [
+      config.services.nextcloud.home
+      config.services.postgresqlBackup.location
+    ];
+    repository = "s3:s3.us-west-001.backblazeb2.com/ajgbackup/restic";
+    s3CredentialsFile = "/etc/nixos/restic-s3creds";
+    timerConfig = { OnCalendar = "*-*-* 00:00:15"; };
   };
 }
