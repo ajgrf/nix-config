@@ -32,7 +32,11 @@
   # Back up Nextcloud data.
   services.restic.backups."${config.networking.hostName}" = {
     passwordFile = "/etc/nixos/restic-password";
-    paths = [ config.services.postgresqlBackup.location ];
+    paths = [
+      "/etc/nixos"
+      "/depot"
+      config.services.postgresqlBackup.location
+    ];
     repository = "s3:s3.us-west-001.backblazeb2.com/ajgbackup/restic";
     s3CredentialsFile = "/etc/nixos/restic-s3creds";
     timerConfig = { OnCalendar = "*-*-* 00:00:15"; };
