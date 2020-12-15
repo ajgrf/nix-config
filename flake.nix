@@ -59,6 +59,7 @@
             ./hosts/petrus.nix
             ./roles/nas.nix
             ./roles/nextcloud.nix
+            ./roles/gitea.nix
             flakeSupport
           ];
         };

@@ -48,6 +48,12 @@
       options = [ "subvol=@nextcloud" ];
     };
 
+  fileSystems."/var/lib/gitea" =
+    { device = "/dev/sda1";
+      fsType = "btrfs";
+      options = [ "subvol=@gitea" ];
+    };
+
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
