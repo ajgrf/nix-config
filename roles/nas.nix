@@ -25,7 +25,6 @@
   # Back up nightly database dumps.
   services.postgresqlBackup = {
     enable = true;
-    location = "/depot/backup/postgresql";
     startAt = "*-*-* 00:00:00";
   };
 
