@@ -8,6 +8,10 @@
     package = pkgs.nextcloud20;
     hostName = "${config.networking.hostName}";
 
+    # Automatically update apps from the Nextcloud app store.
+    autoUpdateApps.enable = true;
+    autoUpdateApps.startAt = "Sun 06:00:00";
+
     config = {
       # Nextcloud PostegreSQL database configuration, recommended over using SQLite
       dbtype = "pgsql";
