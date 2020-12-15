@@ -22,6 +22,10 @@
   # Magic VPN service. Authenticate with `sudo tailscale up`.
   services.tailscale.enable = true;
 
+  # Web server with a default virtual host for web apps to configure.
+  services.nginx.enable = true;
+  services.nginx.virtualHosts.localhost.default = true;
+
   # Back up nightly database dumps.
   services.postgresqlBackup = {
     enable = true;
