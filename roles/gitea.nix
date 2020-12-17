@@ -4,7 +4,7 @@
   services.gitea = {
     enable = true;
     appName = "${config.networking.hostName}: Gitea Service";
-    rootUrl = "http://localhost:3000/git/";
+    rootUrl = "http://${config.networking.hostName}:3000/git/";
 
     database = {
       type = "postgres";
