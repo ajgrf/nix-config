@@ -20,7 +20,7 @@
 
   # Serve Gitea under /git subdirectory.
   services.nginx.virtualHosts = {
-    localhost.locations."/git/".proxyPass = "http://localhost:3000/";
+    localhost.locations."^~ /git/".proxyPass = "http://localhost:3000/";
   };
 
   # Back up Gitea data.

@@ -6,7 +6,7 @@
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud20;
-    hostName = "nextcloud";
+    hostName = "localhost";
 
     # Automatically update apps from the Nextcloud app store.
     autoUpdateApps.enable = true;
@@ -27,11 +27,6 @@
 
   # Allow admin access from any domain or IP address.
   services.nextcloud.config.extraTrustedDomains = [ "*" ];
-  # Serve Nextcloud by default.
-  services.nginx.virtualHosts = {
-    nextcloud.listen = [ { addr = "127.0.0.1"; port = 4000; } ];
-    localhost.locations."/".proxyPass = "http://localhost:4000/";
-  };
 
   services.postgresql = {
     enable = true;
