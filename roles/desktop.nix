@@ -2,8 +2,8 @@
 { config, pkgs, ... }:
 
 {
-  # Set your time zone.
-  time.timeZone = "US/Central";
+  # Run tzupdate service to auto-detect the time zone.
+  services.tzupdate.enable = true;
 
   # Use NetworkManager to configure network interfaces.
   networking.networkmanager.enable = true;
