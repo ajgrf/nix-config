@@ -27,7 +27,7 @@ with stable.pkgs; rec {
     paths = [
       anki
       bitwarden
-      ungoogled-chromium
+      unstable.pkgs.brave
       feh
       firefox
       gnome3.gnome-boxes
