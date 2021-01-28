@@ -16,6 +16,14 @@ nix.extraOptions = ''
 Then add a symlink to =flake.nix= at =/etc/nixos/flake.nix= to manage NixOS
 installs with this repository.
 
+On foreign (non-NixOS) distros, install the pre-release version of nix with
+~nix-env -iA nixpkgs.nixFlakes~, then add the following to
+=~/.config/nix/nix.conf=:
+
+#+BEGIN_SRC conf
+experimental-features = nix-command flakes ca-references
+#+END_SRC
+
 * User Profiles
 
 Run ~nix profile install .~ to install the default user environment, or
