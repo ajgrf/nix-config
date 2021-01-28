@@ -9,7 +9,6 @@
         let
           config = {
             allowUnfree = true;
-            firefox.enableTridactylNative = true;
           };
           pkgImport = pkgs: import pkgs { inherit config system; };
         in
