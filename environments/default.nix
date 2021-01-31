@@ -25,6 +25,7 @@ with stable.pkgs; rec {
     name = "apps-env";
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
+      unstable.alacritty
       anki
       bitwarden
       unstable.pkgs.brave
