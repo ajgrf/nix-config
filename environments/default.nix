@@ -116,6 +116,7 @@ with stable.pkgs; rec {
       shfmt
       stow
       tmux
+      topgrade
       trash-cli
       youtube-dl
     ];
