@@ -33,17 +33,36 @@
   };
 
   # Back up Nextcloud data.
-  services.restic.backups."${config.networking.hostName}" = {
+  services.restic.backups = let
+    hostName = config.networking.hostName;
     passwordFile = "/etc/nixos/restic-password";
-    paths = [
-      "/etc/nixos"
-      "/depot"
-      config.services.postgresqlBackup.location
-    ];
     repository = "s3:s3.us-west-001.backblazeb2.com/ajgbackup/restic";
     s3CredentialsFile = "/etc/nixos/restic-s3creds";
-    timerConfig = { OnCalendar = "*-*-* 00:00:15"; };
-  };
+  in
+    {
+      "${hostName}" = {
+        inherit passwordFile repository s3CredentialsFile;
+        paths = [
+          "/etc/nixos"
+          "/depot"
+          config.services.postgresqlBackup.location
+        ];
+        timerConfig = { OnCalendar = "Mon..Sat *-*-* 00:00:15"; };
+      };
+
+      # Also forget & prune snapshots on Sundays.
+      "${hostName}-and-prune" = {
+        inherit passwordFile repository s3CredentialsFile;
+        paths = config.services.restic.backups."${hostName}".paths;
+        pruneOpts = [
+          "--host ${hostName}"
+          "--keep-daily 14"
+          "--keep-weekly 8"
+          "--keep-monthly 24"
+        ];
+        timerConfig = { OnCalendar = "Sun *-*-* 00:00:15"; };
+      };
+    };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ajgrf = {
