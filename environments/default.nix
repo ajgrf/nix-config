@@ -56,7 +56,7 @@ with stable.pkgs; rec {
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      ((emacsPackagesGen emacs).emacsWithPackages (epkgs: [
+      (with unstable; (emacsPackagesGen emacs).emacsWithPackages (epkgs: [
         epkgs.vterm
         epkgs.pdf-tools
       ]))
