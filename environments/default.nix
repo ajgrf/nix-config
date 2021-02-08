@@ -40,7 +40,7 @@ with stable.pkgs; rec {
       unstable.pkgs.signal-desktop
       spotify
       thunderbird
-      tor-browser-bundle-bin
+      # tor-browser-bundle-bin
       transmission-gtk
       virt-manager
       vlc
