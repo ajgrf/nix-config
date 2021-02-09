@@ -62,6 +62,11 @@
     };
   };
 
+  # Don't install GNOME Web.
+  environment.gnome3.excludePackages = with pkgs; [
+    epiphany
+  ];
+
   # Enable GnuPG agent with socket-activation for every user session.
   programs.gnupg.agent = {
     enable = true;
