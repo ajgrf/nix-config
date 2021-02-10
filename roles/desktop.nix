@@ -8,6 +8,13 @@
   # Use NetworkManager to configure network interfaces.
   networking.networkmanager.enable = true;
 
+  # Use DoH (DNS-over-HTTPS) proxy from NextDNS.
+  # Run `nextdns config set -config abcdef` to set the configuration ID.
+  services.nextdns.enable = true;
+  networking.nameservers = [ "127.0.0.1" "::1" ];
+  networking.resolvconf.useLocalResolver = true;
+  networking.networkmanager.dns = "none";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
