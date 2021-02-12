@@ -74,6 +74,9 @@
     epiphany
   ];
 
+  # Install ADB Android Debug Bridge.
+  programs.adb.enable = true;
+
   # Enable GnuPG agent with socket-activation for every user session.
   programs.gnupg.agent = {
     enable = true;
@@ -88,7 +91,7 @@
   users.users.ajgrf = {
     description = "Alex Griffin";
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" "networkmanager" ];
+    extraGroups = [ "wheel" "libvirtd" "networkmanager" "adbusers" ];
     uid = 1000;
   };
 
