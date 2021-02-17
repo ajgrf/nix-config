@@ -59,6 +59,7 @@
             ./roles/nas.nix
             ./roles/nextcloud.nix
             ./roles/gitea.nix
+            ./roles/bitwarden_rs.nix
             flakeSupport
           ];
         };
