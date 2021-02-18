@@ -27,6 +27,7 @@ with stable.pkgs; rec {
     paths = [
       unstable.alacritty
       anki
+      celluloid
       bitwarden
       unstable.pkgs.brave
       feh
@@ -35,6 +36,7 @@ with stable.pkgs; rec {
       gnome3.gnome-tweaks
       libreoffice
       lollypop
+      mpv
       nextcloud-client
       # quodlibet
       unstable.pkgs.signal-desktop
@@ -43,7 +45,6 @@ with stable.pkgs; rec {
       # tor-browser-bundle-bin
       transmission-gtk
       virt-manager
-      vlc
       xclip
       xdotool
       xorg.xrdb
