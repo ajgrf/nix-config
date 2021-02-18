@@ -104,13 +104,13 @@ with stable.pkgs; rec {
       gitAndTools.git-annex-remote-rclone
       gnupg
       imagemagick
-      unstable.pkgs.kopia
       ledger
       libnotify
       moreutils
       unstable.protonmail-bridge
       rclone
       reptyr
+      restic
       rsync
       shellcheck
       shfmt
