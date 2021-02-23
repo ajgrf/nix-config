@@ -1,6 +1,7 @@
 { stable, unstable, ... }:
 
-with stable.pkgs; rec {
+stable.pkgs // (with stable.pkgs; rec {
+  inherit unstable;
 
   all-env = buildEnv {
     name = "all-env";
@@ -29,7 +30,7 @@ with stable.pkgs; rec {
       anki
       celluloid
       bitwarden
-      unstable.pkgs.brave
+      unstable.brave
       feh
       firefox
       gnome3.gnome-boxes
@@ -39,7 +40,7 @@ with stable.pkgs; rec {
       mpv
       nextcloud-client
       # quodlibet
-      unstable.pkgs.signal-desktop
+      unstable.signal-desktop
       spotify
       thunderbird
       # tor-browser-bundle-bin
@@ -122,4 +123,4 @@ with stable.pkgs; rec {
       youtube-dl
     ];
   };
-}
+})

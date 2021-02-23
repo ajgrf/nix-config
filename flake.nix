@@ -5,21 +5,16 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils }:
     let
+      config = { allowUnfree = true; };
       environments = flake-utils.lib.eachDefaultSystem (system:
-        let
-          config = {
-            allowUnfree = true;
+        rec {
+          packages = import ./environments {
+            stable = import nixpkgs { inherit config system; };
+            unstable = import nixpkgs-unstable { inherit config system; };
           };
-          pkgImport = pkgs: import pkgs { inherit config system; };
-        in
-          rec {
-            packages = import ./environments {
-              stable = pkgImport nixpkgs;
-              unstable = pkgImport nixpkgs-unstable;
-            };
-            legacyPackages = packages;
-            defaultPackage = packages.all-env;
-          }
+          legacyPackages = packages;
+          defaultPackage = packages.all-env;
+        }
       );
 
       flakeSupport = ({ lib, pkgs, ... }: {
