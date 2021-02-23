@@ -10,7 +10,7 @@
     };
   };
 
-  # Serve Gitea under /git subdirectory.
+  # Serve Bitwarden under /bitwarden subdirectory.
   services.nginx.virtualHosts = {
     localhost.locations."^~ /bitwarden/".proxyPass = "http://localhost:8000";
   };
