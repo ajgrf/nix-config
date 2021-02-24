@@ -49,12 +49,14 @@
 
         nixosConfigurations.petrus = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
+          pkgs = environments.packages."aarch64-linux";
           modules = [
             ./hosts/petrus.nix
             ./roles/nas.nix
             ./roles/nextcloud.nix
             ./roles/gitea.nix
             ./roles/bitwarden_rs.nix
+            ./roles/home-assistant.nix
             flakeSupport
           ];
         };
