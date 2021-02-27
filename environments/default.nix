@@ -30,7 +30,7 @@ stable.pkgs // (with stable.pkgs; rec {
       anki
       celluloid
       bitwarden
-      unstable.brave
+      brave
       feh
       firefox
       gnome3.gnome-boxes
@@ -40,7 +40,7 @@ stable.pkgs // (with stable.pkgs; rec {
       mpv
       nextcloud-client
       # quodlibet
-      unstable.signal-desktop
+      signal-desktop
       spotify
       thunderbird
       # tor-browser-bundle-bin
