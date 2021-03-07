@@ -5,7 +5,7 @@
 
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud20;
+    package = pkgs.nextcloud21;
     hostName = "localhost";
 
     # Automatically update apps from the Nextcloud app store.
