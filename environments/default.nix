@@ -1,6 +1,6 @@
 { stable, unstable, ... }:
 
-stable.pkgs // (with stable.pkgs; rec {
+with stable.pkgs; rec {
   inherit unstable;
 
   all-env = buildEnv {
@@ -127,4 +127,4 @@ stable.pkgs // (with stable.pkgs; rec {
       youtube-dl
     ];
   };
-})
+}
