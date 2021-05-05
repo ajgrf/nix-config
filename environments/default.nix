@@ -27,7 +27,7 @@ with stable.pkgs; rec {
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
       unstable.alacritty
-      anki
+      unstable.anki-bin
       celluloid
       bitwarden
       brave
