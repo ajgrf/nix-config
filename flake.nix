@@ -2,19 +2,15 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
   inputs.nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.emacs-overlay.url = "github:nix-community/emacs-overlay";
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, emacs-overlay }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils }:
     let
       config = { allowUnfree = true; };
       environments = flake-utils.lib.eachDefaultSystem (system:
         rec {
           packages = import ./environments {
             stable = import nixpkgs { inherit config system; };
-            unstable = import nixpkgs-unstable {
-              inherit config system;
-              overlays = [ (import emacs-overlay) ];
-            };
+            unstable = import nixpkgs-unstable { inherit config system; };
           };
           legacyPackages = packages;
           defaultPackage = packages.all-env;

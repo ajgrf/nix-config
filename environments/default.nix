@@ -58,14 +58,10 @@ with stable.pkgs; rec {
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      (let myEmacs = if system == "x86_64-linux"
-                     then (unstable.emacsPackagesGen unstable.emacsGcc)
-                     else (emacsPackagesGen emacs);
-       in
-         myEmacs.emacsWithPackages (epkgs: [
-           epkgs.vterm
-           epkgs.pdf-tools
-         ]))
+      (with unstable; (emacsPackagesGen emacs).emacsWithPackages (epkgs: [
+        epkgs.vterm
+        epkgs.pdf-tools
+      ]))
       fd
       git
       ripgrep
