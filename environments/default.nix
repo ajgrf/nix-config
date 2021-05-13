@@ -30,7 +30,7 @@ with stable.pkgs; rec {
       unstable.anki-bin
       celluloid
       bitwarden
-      brave
+      unstable.brave
       feh
       firefox
       gnome3.gnome-boxes
