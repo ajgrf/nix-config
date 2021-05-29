@@ -2,6 +2,9 @@
 { config, pkgs, ... }:
 
 {
+  # Select internationalisation properties.
+  i18n.defaultLocale = "es_US.UTF-8";
+
   # Run tzupdate service to auto-detect the time zone.
   services.tzupdate.enable = true;
 
