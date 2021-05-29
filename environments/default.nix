@@ -109,6 +109,7 @@ with stable.pkgs; rec {
       ledger
       libnotify
       moreutils
+      nixfmt
       unstable.protonmail-bridge
       rclone
       reptyr
