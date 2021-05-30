@@ -5,21 +5,12 @@ with stable.pkgs; rec {
 
   all-env = buildEnv {
     name = "all-env";
-    paths = [
-      apps-env
-      emacs-env
-      fonts-env
-      games-env
-      tools-env
-    ];
+    paths = [ apps-env emacs-env fonts-env games-env tools-env ];
   };
 
   minimal-env = buildEnv {
     name = "minimal-env";
-    paths = [
-      emacs-env
-      tools-env
-    ];
+    paths = [ emacs-env tools-env ];
   };
 
   apps-env = buildEnv {
@@ -58,10 +49,9 @@ with stable.pkgs; rec {
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      (with unstable; (emacsPackagesGen emacs).emacsWithPackages (epkgs: [
-        epkgs.vterm
-        epkgs.pdf-tools
-      ]))
+      (with unstable;
+        (emacsPackagesGen emacs).emacsWithPackages
+        (epkgs: [ epkgs.vterm epkgs.pdf-tools ]))
       fd
       git
       ripgrep
@@ -81,14 +71,7 @@ with stable.pkgs; rec {
   games-env = buildEnv {
     name = "games-env";
     extraOutputsToInstall = [ "doc" "man" ];
-    paths = [
-      crispyDoom
-      dosbox
-      lutris
-      openmw
-      scummvm
-      steam
-    ];
+    paths = [ crispyDoom dosbox lutris openmw scummvm steam ];
   };
 
   tools-env = buildEnv {

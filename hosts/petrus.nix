@@ -17,7 +17,12 @@
   # - ttyS0: for Tegra (Jetson TX1)
   # - ttyAMA0: for QEMU's -machine virt
   # Also increase the amount of CMA to ensure the virtual console on the RPi3 works.
-  boot.kernelParams = ["cma=32M" "console=ttyS0,115200n8" "console=ttyAMA0,115200n8" "console=tty0"];
+  boot.kernelParams = [
+    "cma=32M"
+    "console=ttyS0,115200n8"
+    "console=ttyAMA0,115200n8"
+    "console=tty0"
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_5_10;
   boot.initrd.availableKernelModules = [ "ahci" "usbhid" ];
@@ -25,34 +30,34 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/sda1";
-      fsType = "btrfs";
-      options = [ "subvol=@home" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/sda1";
+    fsType = "btrfs";
+    options = [ "subvol=@home" ];
+  };
 
-  fileSystems."/depot" =
-    { device = "/dev/sda1";
-      fsType = "btrfs";
-      options = [ "subvol=@depot" ];
-    };
+  fileSystems."/depot" = {
+    device = "/dev/sda1";
+    fsType = "btrfs";
+    options = [ "subvol=@depot" ];
+  };
 
-  fileSystems."/var/lib/nextcloud" =
-    { device = "/dev/sda1";
-      fsType = "btrfs";
-      options = [ "subvol=@nextcloud" ];
-    };
+  fileSystems."/var/lib/nextcloud" = {
+    device = "/dev/sda1";
+    fsType = "btrfs";
+    options = [ "subvol=@nextcloud" ];
+  };
 
-  fileSystems."/var/lib/gitea" =
-    { device = "/dev/sda1";
-      fsType = "btrfs";
-      options = [ "subvol=@gitea" ];
-    };
+  fileSystems."/var/lib/gitea" = {
+    device = "/dev/sda1";
+    fsType = "btrfs";
+    options = [ "subvol=@gitea" ];
+  };
 
   swapDevices = [ ];
 
@@ -78,7 +83,8 @@
     # wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -d -i 0 -a sda -i 600 -a sdb -i 600";
+      ExecStart =
+        "${pkgs.hd-idle}/bin/hd-idle -d -i 0 -a sda -i 600 -a sdb -i 600";
     };
   };
 

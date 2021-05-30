@@ -22,11 +22,10 @@
       chmod 700 "${config.services.bitwarden_rs.backupDir}"
       chown bitwarden_rs:root "${config.services.bitwarden_rs.backupDir}"
     '';
-    deps = [];
+    deps = [ ];
   };
 
   # Back up Bitwarden data.
-  services.restic.backups."${config.networking.hostName}".paths = [
-    config.services.bitwarden_rs.backupDir
-  ];
+  services.restic.backups."${config.networking.hostName}".paths =
+    [ config.services.bitwarden_rs.backupDir ];
 }

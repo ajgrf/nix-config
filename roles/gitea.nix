@@ -24,7 +24,6 @@
   };
 
   # Back up Gitea data.
-  services.restic.backups."${config.networking.hostName}".paths = [
-    config.services.gitea.stateDir
-  ];
+  services.restic.backups."${config.networking.hostName}".paths =
+    [ config.services.gitea.stateDir ];
 }

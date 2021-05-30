@@ -6,16 +6,14 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils }:
     let
       config = { allowUnfree = true; };
-      environments = flake-utils.lib.eachDefaultSystem (system:
-        rec {
-          packages = import ./environments {
-            stable = import nixpkgs { inherit config system; };
-            unstable = import nixpkgs-unstable { inherit config system; };
-          };
-          legacyPackages = packages;
-          defaultPackage = packages.all-env;
-        }
-      );
+      environments = flake-utils.lib.eachDefaultSystem (system: rec {
+        packages = import ./environments {
+          stable = import nixpkgs { inherit config system; };
+          unstable = import nixpkgs-unstable { inherit config system; };
+        };
+        legacyPackages = packages;
+        defaultPackage = packages.all-env;
+      });
 
       flakeSupport = ({ lib, pkgs, ... }: {
         # Enable flake support.
@@ -31,20 +29,12 @@
       hosts = {
         nixosConfigurations.poki = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [
-            ./hosts/poki.nix
-            ./roles/desktop.nix
-            flakeSupport
-          ];
+          modules = [ ./hosts/poki.nix ./roles/desktop.nix flakeSupport ];
         };
 
         nixosConfigurations.tenzin = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [
-            ./hosts/tenzin.nix
-            ./roles/desktop.nix
-            flakeSupport
-          ];
+          modules = [ ./hosts/tenzin.nix ./roles/desktop.nix flakeSupport ];
         };
 
         nixosConfigurations.petrus = nixpkgs.lib.nixosSystem {
@@ -59,6 +49,5 @@
           ];
         };
       };
-    in
-      environments // hosts;
+    in environments // hosts;
 }

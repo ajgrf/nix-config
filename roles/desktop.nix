@@ -20,16 +20,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-  ];
+  environment.systemPackages = with pkgs; [ vim ];
 
   # Fonts to make available system-wide.
-  fonts.fonts = with pkgs; [
-    source-han-mono
-    source-han-sans
-    source-han-serif
-  ];
+  fonts.fonts = with pkgs; [ source-han-mono source-han-sans source-han-serif ];
 
   # List services that you want to enable:
 
@@ -73,9 +67,7 @@
   };
 
   # Don't install GNOME Web.
-  environment.gnome3.excludePackages = with pkgs; [
-    epiphany
-  ];
+  environment.gnome3.excludePackages = with pkgs; [ epiphany ];
 
   # Install ADB Android Debug Bridge.
   programs.adb.enable = true;

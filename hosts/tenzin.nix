@@ -28,29 +28,29 @@
 
   # Edited results of the hardware scan (nixos-generate-config):
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "dwc3_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "dwc3_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/096a18ff-de0c-4e25-b7a5-32902863574b";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/096a18ff-de0c-4e25-b7a5-32902863574b";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/648bd2d2-dba4-48d9-acbf-9b069662ee27";
-      fsType = "ext4";
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/648bd2d2-dba4-48d9-acbf-9b069662ee27";
+    fsType = "ext4";
+  };
 
-  boot.initrd.luks.devices."home".device = "/dev/disk/by-uuid/5abba48a-e3e2-4114-8dfc-d97f2a5ba9ac";
+  boot.initrd.luks.devices."home".device =
+    "/dev/disk/by-uuid/5abba48a-e3e2-4114-8dfc-d97f2a5ba9ac";
 
-  swapDevices = [
-    {
-      device = "/dev/disk/by-partuuid/ec0b576e-b8d4-4599-bd1b-6d4b74ed5d73";
-      randomEncryption.enable = true;
-    }
-  ];
+  swapDevices = [{
+    device = "/dev/disk/by-partuuid/ec0b576e-b8d4-4599-bd1b-6d4b74ed5d73";
+    randomEncryption.enable = true;
+  }];
 
   nix.maxJobs = lib.mkDefault 4;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

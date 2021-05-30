@@ -31,11 +31,10 @@
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "nextcloud" ];
-    ensureUsers = [
-      { name = "nextcloud";
-        ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
-      }
-    ];
+    ensureUsers = [{
+      name = "nextcloud";
+      ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
+    }];
   };
 
   # Ensure that postgres is running *before* running the setup.
@@ -45,7 +44,6 @@
   };
 
   # Back up Nextcloud data.
-  services.restic.backups."${config.networking.hostName}".paths = [
-    config.services.nextcloud.home
-  ];
+  services.restic.backups."${config.networking.hostName}".paths =
+    [ config.services.nextcloud.home ];
 }
