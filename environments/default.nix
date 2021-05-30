@@ -13,6 +13,11 @@ with stable.pkgs; rec {
     paths = [ emacs-env tools-env ];
   };
 
+  wsl-env = buildEnv {
+    name = "wsl-env";
+    paths = [ minimal-env unstable.wslu ];
+  };
+
   apps-env = buildEnv {
     name = "apps-env";
     extraOutputsToInstall = [ "doc" "man" ];
