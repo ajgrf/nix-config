@@ -61,7 +61,9 @@
     desktopManager.gnome.enable = true;
     displayManager = {
       gdm.enable = true;
-      autoLogin.enable = true;
+      # GNOME auto-login is currently broken in NixOS 21.05:
+      # https://github.com/NixOS/nixpkgs/issues/103746
+      autoLogin.enable = false;
       autoLogin.user = "ajgrf";
     };
   };
