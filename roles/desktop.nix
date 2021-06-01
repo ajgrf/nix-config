@@ -58,7 +58,7 @@
       "shift:both_capslock_cancel"
     ];
 
-    desktopManager.gnome3.enable = true;
+    desktopManager.gnome.enable = true;
     displayManager = {
       gdm.enable = true;
       autoLogin.enable = true;
@@ -67,7 +67,7 @@
   };
 
   # Don't install GNOME Web.
-  environment.gnome3.excludePackages = with pkgs; [ epiphany ];
+  environment.gnome.excludePackages = with pkgs; [ epiphany ];
 
   # Install ADB Android Debug Bridge.
   programs.adb.enable = true;

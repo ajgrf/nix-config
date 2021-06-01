@@ -15,18 +15,18 @@ with stable.pkgs; rec {
 
   wsl-env = buildEnv {
     name = "wsl-env";
-    paths = [ minimal-env unstable.wslu ];
+    paths = [ minimal-env wslu ];
   };
 
   apps-env = buildEnv {
     name = "apps-env";
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
-      unstable.alacritty
-      unstable.anki-bin
+      alacritty
+      anki-bin
       celluloid
       bitwarden
-      unstable.brave
+      brave
       feh
       firefox
       gnome3.gnome-boxes
@@ -54,8 +54,7 @@ with stable.pkgs; rec {
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
-      (with unstable;
-        (emacsPackagesGen emacs).emacsWithPackages
+      ((emacsPackagesGen emacs).emacsWithPackages
         (epkgs: [ epkgs.vterm epkgs.pdf-tools ]))
       fd
       git
@@ -98,7 +97,7 @@ with stable.pkgs; rec {
       libnotify
       moreutils
       nixfmt
-      unstable.protonmail-bridge
+      protonmail-bridge
       rclone
       reptyr
       restic
