@@ -29,10 +29,7 @@ with stable.pkgs; rec {
       brave
       feh
       firefox
-      gnome3.gnome-boxes
-      gnome3.gnome-tweaks
       libreoffice
-      lollypop
       mpv
       nextcloud-client
       quodlibet

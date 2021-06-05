@@ -20,7 +20,15 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ vim ];
+  environment.systemPackages = with pkgs; [
+    ark
+    gwenview
+    kdeconnect
+    marble
+    okular
+    partition-manager
+    vim
+  ];
 
   # Fonts to make available system-wide.
   fonts.fonts = with pkgs; [ source-han-mono source-han-sans source-han-serif ];
@@ -40,6 +48,9 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  # Enable Bluetooth.
+  hardware.bluetooth.enable = true;
+
   # 32-bit graphics & sound support for games.
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
@@ -58,18 +69,13 @@
       "shift:both_capslock_cancel"
     ];
 
-    desktopManager.gnome.enable = true;
+    desktopManager.plasma5.enable = true;
     displayManager = {
-      gdm.enable = true;
-      # GNOME auto-login is currently broken in NixOS 21.05:
-      # https://github.com/NixOS/nixpkgs/issues/103746
-      autoLogin.enable = false;
+      sddm.enable = true;
+      autoLogin.enable = true;
       autoLogin.user = "ajgrf";
     };
   };
-
-  # Don't install GNOME Web.
-  environment.gnome.excludePackages = with pkgs; [ epiphany ];
 
   # Install ADB Android Debug Bridge.
   programs.adb.enable = true;
@@ -78,7 +84,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "gnome3";
+    pinentryFlavor = "qt";
   };
 
   # Enable libvirt daemon.
