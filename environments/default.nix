@@ -35,11 +35,11 @@ with stable.pkgs; rec {
       lollypop
       mpv
       nextcloud-client
-      # quodlibet
+      quodlibet
       signal-desktop
       spotify
       thunderbird
-      # tor-browser-bundle-bin
+      tor-browser-bundle-bin
       transmission-gtk
       virt-manager
       xclip
