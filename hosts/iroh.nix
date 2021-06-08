@@ -18,6 +18,9 @@
   # Enable non-free firmware.
   hardware.enableRedistributableFirmware = true;
 
+  # Control brightness of external monitors in Plasma desktop.
+  services.xserver.desktopManager.plasma5.supportDDC = true;
+
   # Edited results of the hardware scan (nixos-generate-config):
 
   boot.initrd.availableKernelModules =
