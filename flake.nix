@@ -27,6 +27,11 @@
       });
 
       hosts = {
+        nixosConfigurations.iroh = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./hosts/iroh.nix ./roles/desktop.nix flakeSupport ];
+        };
+
         nixosConfigurations.poki = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ ./hosts/poki.nix ./roles/desktop.nix flakeSupport ];
