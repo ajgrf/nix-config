@@ -18,6 +18,18 @@
   networking.resolvconf.useLocalResolver = true;
   networking.networkmanager.dns = "none";
 
+  # Open KDE Connect ports in the firewall.
+  networking.firewall = {
+    allowedTCPPortRanges = [{
+      from = 1714;
+      to = 1764;
+    }];
+    allowedUDPPortRanges = [{
+      from = 1714;
+      to = 1764;
+    }];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
