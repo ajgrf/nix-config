@@ -24,7 +24,6 @@ with stable.pkgs; rec {
     paths = [
       alacritty
       anki-bin
-      celluloid
       bitwarden
       brave
       feh
