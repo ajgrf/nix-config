@@ -34,11 +34,11 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     ark
+    gnome.gnome-disk-utility
     gwenview
     kdeconnect
     marble
     okular
-    partition-manager
     vim
   ];
 
