@@ -39,6 +39,7 @@
     kdeconnect
     marble
     okular
+    plasma-systemmonitor
     vim
   ];
 
