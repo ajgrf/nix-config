@@ -77,8 +77,7 @@
     layout = "us";
     xkbOptions = builtins.concatStringsSep "," [
       "caps:ctrl_modifier"
-      "lv3:ralt_alt"
-      "compose:menu"
+      "compose:ralt"
       "shift:both_capslock_cancel"
     ];
 
