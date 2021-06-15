@@ -49,12 +49,11 @@ with stable.pkgs; rec {
     name = "emacs-env";
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
+      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
       ((emacsPackagesGen emacs).emacsWithPackages
         (epkgs: [ epkgs.vterm epkgs.pdf-tools ]))
       fd
       git
-      hunspell
-      hunspellDicts.en-us-large
       ripgrep
     ];
   };
