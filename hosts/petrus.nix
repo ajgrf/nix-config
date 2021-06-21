@@ -76,6 +76,19 @@
     MINSTOP=/sys/devices/platform/pwm-fan/hwmon/[[:print:]]*/pwm1=50
   '';
 
+  # Reloading the ethernet module fixes some errors.
+  systemd.services.reload-dwmac_rk = {
+    description = "reload ethernet module";
+    after = [ "network.target" ];
+    wants = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart =
+        "${pkgs.kmod}/bin/modprobe dwmac_rk ; ${pkgs.kmod}/bin/rmmod dwmac_rk ; ${pkgs.kmod}/bin/modprobe dwmac_rk";
+    };
+  };
+
   # Spin down hard disks after 10 minutes of idle time.
   systemd.services.hd-idle = {
     description = "hard disk idle spindown";

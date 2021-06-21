@@ -38,8 +38,6 @@ $ echo "(builtins.getFlake (toString ./.)).nixosConfigurations.petrus" >./nixos-
 $ nix repl ./nixos-config.nix
 #+END_SRC
 
-* TODO Set up RockPro64 to reload dwmac_rk module on boot
-
 * References
 
 - [[https://gist.github.com/suhr/4bb1f8434d0622588b23f9fe13e79973][How to Use Nix Flakes System-Wide]]
