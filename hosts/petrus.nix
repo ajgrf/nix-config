@@ -76,6 +76,30 @@
     MINSTOP=/sys/devices/platform/pwm-fan/hwmon/[[:print:]]*/pwm1=50
   '';
 
+  # Repair network connection when ethernet crashes.
+  systemd.services.network-repair = {
+    description = "repair network connection";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = (pkgs.writeShellScript "network-repair" ''
+        if ! ${pkgs.iputils}/bin/ping -c 1 192.168.1.1 >/dev/null 2>&1; then
+            ${pkgs.kmod}/bin/rmmod dwmac_rk
+            ${pkgs.coreutils}/bin/sleep 60
+            ${pkgs.kmod}/bin/modprobe dwmac_rk
+        fi
+      '');
+    };
+  };
+
+  systemd.timers.network-repair = {
+    description = "repair network connection";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "3min";
+      OnUnitActiveSec = "3min";
+    };
+  };
+
   # Spin down hard disks after 10 minutes of idle time.
   systemd.services.hd-idle = {
     description = "hard disk idle spindown";
