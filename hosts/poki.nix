@@ -32,12 +32,19 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/4b1dfc45-80da-4d6b-b0e5-ae4ec96013d9";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/291dd1c2-8a75-405b-80c1-5fe286699e66";
+    fsType = "btrfs";
+    options = [ "subvol=@nixos" "compress=zstd" ];
   };
 
   boot.initrd.luks.devices."cryptroot".device =
-    "/dev/disk/by-uuid/888a5986-072f-4118-8083-378776ac4660";
+    "/dev/disk/by-uuid/5382c961-005d-4aaf-921e-ad05cf04d754";
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/291dd1c2-8a75-405b-80c1-5fe286699e66";
+    fsType = "btrfs";
+    options = [ "subvol=@nix-store" "compress=zstd" ];
+  };
 
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/D282-B1CE";
@@ -45,18 +52,18 @@
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/d1db40a9-3560-449f-b806-70efa77cb782";
-    fsType = "xfs";
+    device = "/dev/disk/by-uuid/291dd1c2-8a75-405b-80c1-5fe286699e66";
+    fsType = "btrfs";
+    options = [ "subvol=@home" "compress=zstd" ];
   };
 
-  boot.initrd.luks.devices."crypthome".device =
-    "/dev/disk/by-uuid/062ee8be-0112-4885-b61e-d458e2dfebed";
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/291dd1c2-8a75-405b-80c1-5fe286699e66";
+    fsType = "btrfs";
+    options = [ "subvol=@swap" ];
+  };
 
-  # Encrypted swap partition with a random key.
-  swapDevices = [{
-    device = "/dev/disk/by-partuuid/2cf3777c-0a29-4a22-848e-264c060eba4c";
-    randomEncryption.enable = true;
-  }];
+  swapDevices = [{ device = "/swap/swapfile"; }];
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
@@ -67,6 +74,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.05"; # Did you read the comment?
 
 }
