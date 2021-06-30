@@ -10,6 +10,7 @@
 
   # Use NetworkManager to configure network interfaces.
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   # Use DoH (DNS-over-HTTPS) proxy from NextDNS.
   # Run `nextdns config set -config abcdef` to set the configuration ID.
