@@ -35,7 +35,7 @@ with stable.pkgs; rec {
       signal-desktop
       spotify
       thunderbird
-      tor-browser-bundle-bin
+      unstable.tor-browser-bundle-bin
       transmission-gtk
       virt-manager
       xclip
