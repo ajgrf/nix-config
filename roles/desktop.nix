@@ -80,12 +80,13 @@
     enable = true;
     libinput.enable = true;
 
-    layout = "us";
-    xkbOptions = builtins.concatStringsSep "," [
-      "caps:ctrl_modifier"
-      "compose:ralt"
-      "shift:both_capslock_cancel"
-    ];
+    layout = "us-spanish";
+    extraLayouts."us-spanish" = {
+      description = "US layout with AltGr Spanish";
+      languages = [ "eng" "spa" ];
+      symbolsFile = ../files/symbols/us-spanish;
+    };
+    xkbOptions = "caps:ctrl_modifier";
 
     desktopManager.plasma5.enable = true;
     displayManager = {
