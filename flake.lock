@@ -15,6 +15,24 @@
         "type": "github"
       }
     },
+    "kmonad": {
+      "flake": false,
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1625566080,
+        "narHash": "sha256-tryrd9oYwlD8bfizm5xwW7imqi5JGgwxZ+WtYqvQJpY=",
+        "owner": "kmonad",
+        "repo": "kmonad",
+        "rev": "768d5e4e1375d80607440bdcd10296ca7f6f00ea",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "kmonad",
+        "repo": "kmonad",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1625176478,
@@ -33,11 +51,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1625281901,
-        "narHash": "sha256-DkZDtTIPzhXATqIps2ifNFpnI+PTcfMYdcrx/oFm00Q=",
+        "lastModified": 1625366435,
+        "narHash": "sha256-29ZJQBmJ9p2IienoYXCT/qq8sf+rfOvXWfeqVLZOh0E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "09c38c29f2c719cd76ca17a596c2fdac9e186ceb",
+        "rev": "20887e4bbfdae3aed6bfa1f53ddf138ee325515e",
         "type": "github"
       },
       "original": {
@@ -50,6 +68,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "kmonad": "kmonad",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }

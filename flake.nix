@@ -2,8 +2,12 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
   inputs.nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.kmonad = {
+    url = "github:kmonad/kmonad?dir=nix";
+    flake = false;
+  };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, kmonad }:
     let
       config = { allowUnfree = true; };
       environments = flake-utils.lib.eachDefaultSystem (system: rec {
@@ -29,7 +33,11 @@
       hosts = {
         nixosConfigurations.iroh = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./hosts/iroh.nix ./roles/desktop.nix flakeSupport ];
+          modules = [
+            (import ./hosts/iroh.nix kmonad)
+            ./roles/desktop.nix
+            flakeSupport
+          ];
         };
 
         nixosConfigurations.poki = nixpkgs.lib.nixosSystem {

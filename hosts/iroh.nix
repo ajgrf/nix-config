@@ -1,7 +1,11 @@
 # This file contains options specific to my desktop installation.
+kmonad:
 { config, lib, pkgs, ... }:
 
-{
+let kmonadPkg = import "${kmonad}/nix/kmonad.nix";
+in {
+  imports = [ "${kmonad}/nix/nixos-module.nix" ];
+
   # Named after "The Dragon of the West".
   networking.hostName = "iroh";
 
@@ -13,6 +17,12 @@
       efiSysMountPoint = "/boot/efi";
       canTouchEfiVariables = true;
     };
+  };
+
+  services.kmonad = {
+    enable = true;
+    package = with pkgs.haskellPackages; callPackage kmonadPkg { };
+    configfiles = [ ../files/cleave.kbd ];
   };
 
   # Enable non-free firmware.
