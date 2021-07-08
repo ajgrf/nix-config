@@ -29,7 +29,7 @@ with stable.pkgs; rec {
       feh
       firefox
       libreoffice
-      mpv
+      (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
       nextcloud-client
       quodlibet
       signal-desktop
