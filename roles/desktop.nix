@@ -86,7 +86,8 @@
       languages = [ "eng" "spa" ];
       symbolsFile = ../files/symbols/us-spanish;
     };
-    xkbOptions = "caps:ctrl_modifier";
+    xkbOptions =
+      builtins.concatStringsSep "," [ "caps:ctrl_modifier" "compose:102" ];
 
     desktopManager.plasma5.enable = true;
     displayManager = {

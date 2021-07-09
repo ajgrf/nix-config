@@ -25,8 +25,7 @@ Copy-out the following template to quickly create a layer:
 (defcfg
   ;; For Linux
   input  (device-file "/dev/input/by-id/usb-TrulyErgonomic.com_Truly_Ergonomic_CLEAVE_Keyboard-event-kbd")
-  output (uinput-sink "KMonad: CLEAVE"
-    "/run/current-system/sw/bin/sleep 1 && /run/current-system/sw/bin/setxkbmap -option compose:102")
+  output (uinput-sink "KMonad: CLEAVE")
   ;; Set the compose key to `ISO2'
   cmp-seq 102d
 
@@ -45,6 +44,21 @@ Copy-out the following template to quickly create a layer:
   allow-cmd false
 )
 
+(defalias
+  ;; Custom Fn layers with Fn-lock support.
+  fn1 (tap-hold-next-release 400 lmet (layer-toggle function))
+  fn2 (tap-hold-next-release 400 lmet (around (layer-toggle function)
+                                              (layer-toggle function-unlocked)))
+
+  ;; Fn-(un)lock keys.
+  fnu (layer-add f-keys)
+  fnl (layer-rem f-keys)
+
+  ;; Quick launch keys to run or raise apps on the taskbar.
+  ap1 (multi-tap 300 M-1 300 M-3 M-5)
+  ap2 (multi-tap 300 M-2 300 M-4 M-6)
+)
+
 (defsrc
   esc  f1   f2   f3   f4   f5   f6   caps rmet f7   f8   f9   f10  f11  f12  del
   f16  grv  1    2    3    4    5    f22  f23  6    7    8    9    0    -    =
@@ -55,60 +69,43 @@ Copy-out the following template to quickly create a layer:
             home pgdn end            f18  ret            left down rght
 )
 
+;; Function lock is enabled by default.
 (deflayer default
-  _    brdn brup @exp @run @ap1 @ap2 _    _    @prv @pp  @nxt mute vold volu _
-  @bkt _    _    _    _    _    _    @pst @und _    _    _    _    _    _    _
-  _         _    _    _    _    _    @cut @cpy _    _    _    _    _    _    _
+  _    brdn brup M-s  A-f2 @ap1 @ap2 _    _    prev pp   next mute vold volu _
+ S-tab _    _    _    _    _    _    C-v  C-z  _    _    _    _    _    _    _
+  _         _    _    _    _    _    C-x  C-c  _    _    _    _    _    _    _
   lctl      _    _    _    _    _              _    _    _    _    _    _    _
   _         _    _    _    _    _    del  _    _    _    _    _    _    _
   _    _         _         spc                      _         _         lalt _
-            _    _    _              @aux _              _    _    _
+            _    _    _              @fn1 _              _    _    _
 )
 
-(deflayer auxiliary
+(deflayer function
+  @fnu f1   f2   f3   f4   f5   f6   _    _    f7   f8   f9   f10  f11  f12  power
+  _    _    RA-1 _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    RA-w RA-e A-f2 _    _    _    _    RA-u RA-i RA-o A-f2 _    _
+  _         RA-a M-s  M-d  _    _              _    _    _    M-l  _    _    _
+  _         _    _    _    _    _    _    _    RA-n _    _    _    RA-/ _
+  _    _         _         _                        _         M-up      _    _
+            _    _    _              _    _           M-left M-down M-rght
+)
+
+(deflayer function-unlocked
+  @fnl brdn brup M-s  A-f2 @ap1 @ap2 _    _    prev pp   next mute vold volu _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _              _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _         _         _                        _         _         _    _
+            _    _    _              _    _              _    _    _
+)
+
+(deflayer f-keys
   _    f1   f2   f3   f4   f5   f6   _    _    f7   f8   f9   f10  f11  f12  _
-  _    _    @¡   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _         _    @ü   @é   @run _    _    _    _    @ú   @í   @ó   @run _    _
-  _         @á   @exp @dsk _    _              _    _    _    @lck _    _    _
-  _         _    _    _    _    _    _    _    @ñ   _    _    _    @¿   _
-  _    _         _         _                        _         @wup      _    _
-            _    _    _              _    _              @wlf @wdn @wrt
-)
-
-(defalias
-  ;; Multi-function keys
-  aux (tap-hold-next 400 lmet (layer-toggle auxiliary))
-
-  ;; Media keys
-  prv previoussong
-  pp  playpause
-  nxt nextsong
-
-  ;; Key combo abbreviations
-  bkt S-tab
-  und C-z
-  cut C-x
-  cpy C-c
-  pst C-v
-  run A-f2
-  exp M-s
-  ap1 M-1
-  ap2 M-2
-  dsk M-d
-  lck M-l
-  wup M-up
-  wdn M-down
-  wlf M-left
-  wrt M-rght
-
-  ;; Special characters
-  á   RA-a
-  é   RA-e
-  í   RA-i
-  ó   RA-o
-  ú   RA-u
-  ü   RA-w
-  ñ   RA-n
-  ¿   RA-/
-  ¡   RA-1
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    _    _    _              _    _    _    _    _    _    _
+  _         _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _         _         _                        _         _         _    _
+            _    _    _              @fn2 _              _    _    _
 )
