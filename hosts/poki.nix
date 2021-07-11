@@ -37,7 +37,7 @@
     options = [ "subvol=@nixos" "compress=zstd" ];
   };
 
-  boot.initrd.luks.devices."cryptroot".device =
+  boot.initrd.luks.devices."cryptvol".device =
     "/dev/disk/by-uuid/5382c961-005d-4aaf-921e-ad05cf04d754";
 
   fileSystems."/nix" = {
