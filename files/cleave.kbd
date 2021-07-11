@@ -82,8 +82,8 @@ Copy-out the following template to quickly create a layer:
 
 (deflayer function
   @fnu f1   f2   f3   f4   f5   f6   _    _    f7   f8   f9   f10  f11  f12  power
-  _    _    RA-1 _    _    _    _    _    _    _    _    _    _    _    _    _
-  _         _    RA-w RA-e A-f2 _    _    _    _    RA-u RA-i RA-o A-f2 _    _
+  _    _    RA-! _    _    _    _    _    _    _    _    _    _    _    _    _
+  _         _    _    RA-e A-f2 _    _    _    RA-y RA-u RA-i RA-o A-f2 _    _
   _         RA-a M-s  M-d  _    _              _    _    _    M-l  _    _    _
   _         _    _    _    _    _    _    _    RA-n _    _    _    RA-/ _
   _    _         _         _                        _         M-up      _    _

@@ -80,12 +80,8 @@
     enable = true;
     libinput.enable = true;
 
-    layout = "us-spanish";
-    extraLayouts."us-spanish" = {
-      description = "US layout with AltGr Spanish";
-      languages = [ "eng" "spa" ];
-      symbolsFile = ../files/symbols/us-spanish;
-    };
+    layout = "us";
+    xkbVariant = "altgr-intl";
     xkbOptions =
       builtins.concatStringsSep "," [ "caps:ctrl_modifier" "compose:102" ];
 
