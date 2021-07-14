@@ -26,6 +26,7 @@ with stable.pkgs; rec {
       anki-bin
       bitwarden
       brave
+      discord
       feh
       firefox
       libreoffice
