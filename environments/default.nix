@@ -80,7 +80,6 @@ with stable.pkgs; rec {
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
       aria2
-      bitwarden-cli
       brightnessctl
       direnv
       ffmpeg
@@ -94,7 +93,9 @@ with stable.pkgs; rec {
       libnotify
       moreutils
       nixfmt
+      pinentry-qt
       protonmail-bridge
+      rbw
       rclone
       reptyr
       restic
