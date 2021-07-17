@@ -2,6 +2,8 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./nextcloud.nix ./gitea.nix ./bitwarden_rs.nix ];
+
   # Set your time zone.
   time.timeZone = "US/Central";
 
