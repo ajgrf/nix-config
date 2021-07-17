@@ -34,8 +34,9 @@
         nixosConfigurations.iroh = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./hosts/iroh.nix kmonad)
+            ./hosts/iroh.nix
             ./roles/desktop.nix
+            (import ./roles/kmonad kmonad)
             flakeSupport
           ];
         };
