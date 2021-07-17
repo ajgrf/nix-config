@@ -28,16 +28,19 @@
         modules = [ flake-utils-plus.nixosModules.saneFlakeDefaults ];
       };
 
-      hosts.iroh.modules =
-        [ ./hosts/iroh.nix ./roles/desktop.nix (import ./roles/kmonad kmonad) ];
+      hosts.iroh.modules = [
+        ./hosts/iroh.nix
+        ./modules/desktop.nix
+        (import ./modules/kmonad kmonad)
+      ];
 
-      hosts.poki.modules = [ ./hosts/poki.nix ./roles/desktop.nix ];
+      hosts.poki.modules = [ ./hosts/poki.nix ./modules/desktop.nix ];
 
-      hosts.tenzin.modules = [ ./hosts/tenzin.nix ./roles/desktop.nix ];
+      hosts.tenzin.modules = [ ./hosts/tenzin.nix ./modules/desktop.nix ];
 
       hosts.petrus = {
         system = "aarch64-linux";
-        modules = [ ./hosts/petrus.nix ./roles/nas ];
+        modules = [ ./hosts/petrus.nix ./modules/nas ];
       };
     };
 }
