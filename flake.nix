@@ -42,5 +42,19 @@
         system = "aarch64-linux";
         modules = [ ./hosts/petrus.nix ./modules/nas ];
       };
+
+      # Nix REPL for exploring this flake:
+      # https://github.com/NixOS/nix/issues/3803#issuecomment-748612294
+      appsBuilder = channels:
+        with channels.nixpkgs; {
+          repl = flake-utils-plus.lib.mkApp {
+            drv = pkgs.writeShellScriptBin "repl" ''
+              confnix=$(mktemp)
+              echo "builtins.getFlake (toString $(git rev-parse --show-toplevel))" >$confnix
+              trap "rm $confnix" EXIT
+              nix repl $confnix
+            '';
+          };
+        };
     };
 }
