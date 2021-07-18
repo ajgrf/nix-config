@@ -1,6 +1,6 @@
-{ stable, unstable, ... }:
+{ nixpkgs, unstable, ... }:
 
-with stable.pkgs; rec {
+with nixpkgs.pkgs; rec {
   inherit unstable;
 
   all-env = buildEnv {

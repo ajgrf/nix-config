@@ -1,31 +1,30 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
-  inputs.nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-  inputs.flake-utils-plus.url = "github:gytis-ivaskevicius/flake-utils-plus";
-  inputs.kmonad = {
-    url = "github:kmonad/kmonad?dir=nix";
-    flake = false;
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+
+    kmonad = {
+      url = "github:kmonad/kmonad?dir=nix";
+      flake = false;
+    };
   };
 
-  outputs =
-    inputs@{ self, nixpkgs, nixpkgs-unstable, flake-utils-plus, kmonad }:
-    flake-utils-plus.lib.systemFlake {
+  outputs = inputs@{ self, nixpkgs, unstable, utils, kmonad, ... }:
+    utils.lib.systemFlake {
       inherit self inputs;
 
       channelsConfig.allowUnfree = true;
 
       channels.nixpkgs.input = nixpkgs;
-      channels.nixpkgs-unstable.input = nixpkgs-unstable;
+      channels.unstable.input = unstable;
 
-      packagesBuilder = { nixpkgs, nixpkgs-unstable, ... }:
-        import ./environments {
-          stable = nixpkgs;
-          unstable = nixpkgs-unstable;
-        };
+      packagesBuilder = { nixpkgs, unstable, ... }:
+        import ./environments { inherit nixpkgs unstable; };
 
       hostDefaults = {
         system = "x86_64-linux";
-        modules = [ flake-utils-plus.nixosModules.saneFlakeDefaults ];
+        modules = [ utils.nixosModules.saneFlakeDefaults ];
         # These are not part of the module system, so they can be used in
         # `imports` lines without infinite recursion.
         specialArgs = { inherit kmonad; };
@@ -46,7 +45,7 @@
       # https://github.com/NixOS/nix/issues/3803#issuecomment-748612294
       appsBuilder = channels:
         with channels.nixpkgs; {
-          repl = flake-utils-plus.lib.mkApp {
+          repl = utils.lib.mkApp {
             drv = pkgs.writeShellScriptBin "repl" ''
               confnix=$(mktemp)
               echo "builtins.getFlake (toString $(git rev-parse --show-toplevel))" >$confnix
