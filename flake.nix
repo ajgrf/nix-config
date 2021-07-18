@@ -19,6 +19,9 @@
       channels.nixpkgs.input = nixpkgs;
       channels.unstable.input = unstable;
 
+      overlay = import ./overlays;
+      sharedOverlays = [ self.overlay ];
+
       packagesBuilder = { nixpkgs, unstable, ... }:
         import ./environments { inherit nixpkgs unstable; };
 
