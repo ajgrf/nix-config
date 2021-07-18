@@ -79,6 +79,7 @@ with nixpkgs.pkgs; rec {
     name = "tools-env";
     extraOutputsToInstall = [ "doc" "man" ];
     paths = [
+      aaxtomp3
       aria2
       brightnessctl
       direnv
