@@ -22,7 +22,7 @@
     enable = true;
     package = with pkgs.haskellPackages;
       callPackage (import "${kmonad}/nix/kmonad.nix") { };
-    configfiles = [ ../files/cleave.kbd ];
+    configfiles = [ ../config/kmonad/cleave.kbd ];
   };
 
   # Enable non-free firmware.
