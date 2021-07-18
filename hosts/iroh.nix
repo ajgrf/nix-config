@@ -1,7 +1,9 @@
 # This file contains options specific to my desktop installation.
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, kmonad, ... }:
 
 {
+  imports = [ "${kmonad}/nix/nixos-module.nix" ];
+
   # Named after "The Dragon of the West".
   networking.hostName = "iroh";
 
@@ -13,6 +15,14 @@
       efiSysMountPoint = "/boot/efi";
       canTouchEfiVariables = true;
     };
+  };
+
+  # Advanced keyboard customizations.
+  services.kmonad = {
+    enable = true;
+    package = with pkgs.haskellPackages;
+      callPackage (import "${kmonad}/nix/kmonad.nix") { };
+    configfiles = [ ../files/cleave.kbd ];
   };
 
   # Enable non-free firmware.

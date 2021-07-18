@@ -26,13 +26,12 @@
       hostDefaults = {
         system = "x86_64-linux";
         modules = [ flake-utils-plus.nixosModules.saneFlakeDefaults ];
+        # These are not part of the module system, so they can be used in
+        # `imports` lines without infinite recursion.
+        specialArgs = { inherit kmonad; };
       };
 
-      hosts.iroh.modules = [
-        ./hosts/iroh.nix
-        ./modules/desktop.nix
-        (import ./modules/kmonad kmonad)
-      ];
+      hosts.iroh.modules = [ ./hosts/iroh.nix ./modules/desktop.nix ];
 
       hosts.poki.modules = [ ./hosts/poki.nix ./modules/desktop.nix ];
 
