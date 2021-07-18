@@ -11,6 +11,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, unstable, utils, kmonad, ... }:
+    with (import ./modules { inherit utils; });
     utils.lib.systemFlake {
       inherit self inputs;
 
@@ -33,15 +34,15 @@
         specialArgs = { inherit kmonad; };
       };
 
-      hosts.iroh.modules = [ ./hosts/iroh.nix ./modules/desktop.nix ];
+      hosts.iroh.modules = [ iroh desktop ];
 
-      hosts.poki.modules = [ ./hosts/poki.nix ./modules/desktop.nix ];
+      hosts.poki.modules = [ poki desktop ];
 
-      hosts.tenzin.modules = [ ./hosts/tenzin.nix ./modules/desktop.nix ];
+      hosts.tenzin.modules = [ tenzin desktop ];
 
       hosts.petrus = {
         system = "aarch64-linux";
-        modules = [ ./hosts/petrus.nix ./modules/nas ];
+        modules = [ petrus nas ];
       };
 
       # Nix REPL for exploring this flake:
